@@ -44,7 +44,7 @@ function _bot() {
         }
       }
       if (replyMsg == '') {
-        replyMsg = '測試請打：某地區的 PM2.5 \n 資料來源：http://taqm.epa.gov.tw/taqm/tw/Pm25Index.aspx \n不知道「'+msg+'」是什麼意思,能吃ㄇ:p';
+        replyMsg = '測試請打：某地區的 PM2.5 \n資料來源：http://taqm.epa.gov.tw/taqm/tw/Pm25Index.aspx \n  \n不知道「'+msg+'」是什麼意思,能吃ㄇ:p';
       }
 
       event.reply(replyMsg).then(function(data) {
