@@ -41,11 +41,11 @@ function _bot() {
           }
         });
         if (replyMsg == '') {
-          replyMsg = '找不到你他媽說的地方';
+          replyMsg = '查無此處請輸入完整地名．ex 台北市,高雄市～';
         }
       }
       if (replyMsg == '') {
-        replyMsg = '你在公三小都聽不懂';
+        replyMsg = '不知道「'+msg+'」是什麼意思,能吃ㄇ:p';
       }
 
       event.reply(replyMsg).then(function(data) {
