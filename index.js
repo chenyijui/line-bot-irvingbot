@@ -10,7 +10,10 @@ var bot = linebot({
 
 
 console.log('早安感謝你加我好友，去你的。'); //把收到訊息的 event 印出來看看
-
+event.reply([
+    { type: 'text', text: '早安感謝你加我好友' },
+    { type: 'text', text: '測試請打：某地區的 PM2.5' }
+]);
 
 var timer;
 var pm = [];
@@ -41,7 +44,7 @@ function _bot() {
           }
         });
         if (replyMsg == '') {
-          replyMsg = '查無此處請輸入完整地名．ex 台北市,高雄市～';
+          replyMsg = '查無此處請輸入完整地名(區)';
         }
       }
       if (replyMsg == '') {
@@ -81,5 +84,5 @@ setTimeout(function(){
     var sendMsg = '早安親愛的irving';
     bot.push(userId,sendMsg);
     console.log('send: '+sendMsg);
-},5);
+},5000);
 
