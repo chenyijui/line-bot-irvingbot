@@ -10,10 +10,7 @@ var bot = linebot({
 
 
 console.log('早安感謝你加我好友，去你的。'); //把收到訊息的 event 印出來看看
-event.reply([
-    { type: 'text', text: '早安感謝你加我好友' },
-    { type: 'text', text: '測試請打：某地區的 PM2.5' }
-]);
+
 
 var timer;
 var pm = [];
@@ -37,6 +34,10 @@ function _bot() {
     if (event.message.type == 'text') {
       var msg = event.message.text;
       var replyMsg = '';
+    event.reply([
+    { type: 'text', text: '早安感謝你加我好友' },
+    { type: 'text', text: '測試請打：某地區的 PM2.5' }
+	]);
       if (msg.indexOf('PM2.5') != -1) {
         pm.forEach(function(e, i) {
           if (msg.indexOf(e[0]) != -1) {
