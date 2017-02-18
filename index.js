@@ -44,7 +44,7 @@ function _bot() {
         }
       }
       if (replyMsg == '') {
-        replyMsg = '測試請打：某地區的 PM2.5 \r 不知道「'+msg+'」是什麼意思,能吃ㄇ:p';
+        replyMsg = '測試請打：某地區的 PM2.5 \n 不知道「'+msg+'」是什麼意思,能吃ㄇ:p';
       }
 
       event.reply(replyMsg).then(function(data) {
