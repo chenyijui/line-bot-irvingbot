@@ -33,11 +33,10 @@ function _bot() {
     if (event.message.type == 'text') {
       var msg = event.message.text;
       var replyMsg = '';
-    event.reply({ type: 'text', text: '測試請打：某地區的 PM2.5' });
       if (msg.indexOf('PM2.5') != -1) {
         pm.forEach(function(e, i) {
           if (msg.indexOf(e[0]) != -1) {
-            replyMsg = e[0] + '的 PM2.5 數值為 ' + e[1];
+            replyMsg =  e[0] + '的 PM2.5 數值為 ' + e[1];
           }
         });
         if (replyMsg == '') {
@@ -45,7 +44,7 @@ function _bot() {
         }
       }
       if (replyMsg == '') {
-        replyMsg = '不知道「'+msg+'」是什麼意思,能吃ㄇ:p';
+        replyMsg = '測試請打：某地區的 PM2.5 \r 不知道「'+msg+'」是什麼意思,能吃ㄇ:p';
       }
 
       event.reply(replyMsg).then(function(data) {
