@@ -68,5 +68,5 @@ function _getPMJSON() {
       pm[i][2] = e.PM10 * 1;
     });
   });
-  timer = setInterval(_getJSON, 1800000); //每半小時抓取一次新資料
+  timer = setInterval(_getPMJSON, 1800000); //每半小時抓取一次新資料
 }
