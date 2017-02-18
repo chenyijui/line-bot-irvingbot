@@ -11,7 +11,6 @@ var bot = linebot({
 
 console.log('早安感謝你加我好友，去你的。'); //把收到訊息的 event 印出來看看
 
-
 var timer;
 var pm = [];
 _getPMJSON();
