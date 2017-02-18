@@ -8,10 +8,6 @@ var bot = linebot({
   channelAccessToken: 'fPPdnXyU1WDXhQGVXUswJU9AJC4jRgaDm/B84ezhp+Av8KCJbQRdFjDR6OQnF5R9vwTqLb7G7vDFwAvjjo+dpXzPwTv4tEIjcfQlms6bftGPEQl+pHm6qO/HZqJjB2cIoR7wj2Odw+ANaASE30j+agdB04t89/1O/w1cDnyilFU='
 });
 
-bot.on('message', function(event) {
-  console.log(event); //把收到訊息的 event 印出來看看
-});
-
 var timer;
 var pm = [];
 _getPMJSON();
