@@ -8,6 +8,10 @@ var bot = linebot({
   channelAccessToken: 'fPPdnXyU1WDXhQGVXUswJU9AJC4jRgaDm/B84ezhp+Av8KCJbQRdFjDR6OQnF5R9vwTqLb7G7vDFwAvjjo+dpXzPwTv4tEIjcfQlms6bftGPEQl+pHm6qO/HZqJjB2cIoR7wj2Odw+ANaASE30j+agdB04t89/1O/w1cDnyilFU='
 });
 
+
+console.log('早安感謝你加我好友，去你的。'); //把收到訊息的 event 印出來看看
+
+
 var timer;
 var pm = [];
 _getPMJSON();
@@ -66,4 +70,16 @@ function _getPMJSON() {
     });
   });
   timer = setInterval(_getPMJSON, 1800000); //每半小時抓取一次新資料
+
 }
+
+
+
+//自動推播 使用 timeout發送
+setTimeout(function(){
+    var userId = '286686578';
+    var sendMsg = '早安親愛的irving';
+    bot.push(userId,sendMsg);
+    console.log('send: '+sendMsg);
+},5);
+
