@@ -70,3 +70,11 @@ function _getPMJSON() {
   });
   timer = setInterval(_getPMJSON, 1800000); //每半小時抓取一次新資料
 }
+
+//自動推播 使用 timeout發送
+setTimeout(function(){
+    var userId = '286686578';
+    var sendMsg = '早安親愛的irving';
+    bot.push(userId,sendMsg);
+    console.log('send: '+sendMsg);
+},5);
