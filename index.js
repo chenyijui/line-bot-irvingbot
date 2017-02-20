@@ -9,13 +9,13 @@ var bot = linebot({
 });
 
 
-console.log('早安感謝你加我好友，去你的。'); //把收到訊息的 event 印出來看看
-
 var timer;
 var pm = [];
 _getPMJSON();
+_getUVIJSON();
 
-_bot();
+_PMbot();
+_UVIbot();
 
 const app = express();
 const linebotParser = bot.parser();
@@ -28,7 +28,7 @@ var server = app.listen(process.env.PORT || 8080, function() {
 });
 
 //回答的 function
-function _bot() {
+function _PMbot() {
   bot.on('message', function(event) {
     if (event.message.type == 'text') {
       var msg = event.message.text;
@@ -57,6 +57,35 @@ function _bot() {
 
 }
 
+function _UVIbot() {
+  bot.on('message', function(event) {
+    if (event.message.type == 'text') {
+      var msg = event.message.text;
+      var replyMsg = '';
+      if (msg.indexOf('UVI') != -1) {
+        pm.forEach(function(e, i) {
+          if (msg.indexOf(e[0]) != -1) {
+            replyMsg =  e[0] + '的 紫外線為 ' + e[1];
+          }
+        });
+        if (replyMsg == '') {
+          replyMsg = '查無此處請輸入完整地名(區)';
+        }
+      }
+      if (replyMsg == '') {
+        replyMsg = '測試請打：某地區的 紫外線 \n資料來源：http://taqm.epa.gov.tw/taqm/tw/Pm25Index.aspx \n  \n不知道「'+msg+'」是什麼意思,能吃ㄇ:p';
+      }
+
+      event.reply(replyMsg).then(function(data) {
+        console.log(replyMsg);
+      }).catch(function(error) {
+        console.log('error');
+      });
+    }
+  });
+
+}
+
 //取得 PM2.5 OpenData Json 的資料
 function _getPMJSON() {
   clearTimeout(timer);
@@ -72,6 +101,19 @@ function _getPMJSON() {
 
 }
 
+//取的 紫外線 OpenData Json 的資料
+function _getUVIJSON() {
+  clearTimeout(timer);
+  getJSON('http://opendata.epa.gov.tw/ws/Data/UV/?format=json', function(error, response) {
+    response.forEach(function(e, i) {
+      uvi[i] = [];
+      uvi[i][0] = e.SiteName;
+      uvi[i][1] = e['UVI'] * 1;
+    });
+  });
+  timer = setInterval(_getUVIJSON, 3600000); //每1小時抓取一次新資料
+
+}
 
 
 //自動推播 使用 timeout發送
