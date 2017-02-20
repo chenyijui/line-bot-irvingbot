@@ -11,6 +11,7 @@ var bot = linebot({
 
 var timer;
 var pm = [];
+var uvi = [];
 _getPMJSON();
 _getUVIJSON();
 
