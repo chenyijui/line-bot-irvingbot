@@ -11,11 +11,11 @@ var bot = linebot({
 
 var timer;
 var pm = [];
+var uvi = [];
 _getPMJSON();
 _getUVIJSON();
 
-_PMbot();
-_UVIbot();
+_bot();
 
 const app = express();
 const linebotParser = bot.parser();
@@ -28,7 +28,7 @@ var server = app.listen(process.env.PORT || 8080, function() {
 });
 
 //回答的 function
-function _PMbot() {
+function _bot() {
   bot.on('message', function(event) {
     if (event.message.type == 'text') {
       var msg = event.message.text;
@@ -42,28 +42,8 @@ function _PMbot() {
         if (replyMsg == '') {
           replyMsg = '查無此處請輸入完整地名(區)';
         }
-      }
-      if (replyMsg == '') {
-        replyMsg = '測試請打：某地區的 PM2.5 \n資料來源：http://taqm.epa.gov.tw/taqm/tw/Pm25Index.aspx \n  \n不知道「'+msg+'」是什麼意思,能吃ㄇ:p';
-      }
-
-      event.reply(replyMsg).then(function(data) {
-        console.log(replyMsg);
-      }).catch(function(error) {
-        console.log('error');
-      });
-    }
-  });
-
-}
-
-function _UVIbot() {
-  bot.on('message', function(event) {
-    if (event.message.type == 'text') {
-      var msg = event.message.text;
-      var replyMsg = '';
-      if (msg.indexOf('UVI') != -1) {
-        pm.forEach(function(e, i) {
+      } else if(msg.indexOf('UVI') != -1){
+        uvi.forEach(function(e, i) {
           if (msg.indexOf(e[0]) != -1) {
             replyMsg =  e[0] + '的 紫外線為 ' + e[1];
           }
@@ -73,7 +53,10 @@ function _UVIbot() {
         }
       }
       if (replyMsg == '') {
+
         replyMsg = '測試請打：某地區的 UIV \n資料來源：http://taqm.epa.gov.tw/taqm/tw/Pm25Index.aspx \n  \n不知道「'+msg+'」是什麼意思,能吃ㄇ:p';
+
+        replyMsg = '測試請打：某地區的 PM2.5 \n資料來源：http://taqm.epa.gov.tw/taqm/tw/Pm25Index.aspx \n  \n不知道「'+msg+'」是什麼意思,能吃ㄇ:p';
       }
 
       event.reply(replyMsg).then(function(data) {
