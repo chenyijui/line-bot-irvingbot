@@ -49,7 +49,7 @@ function _bot() {
           }
         });
         if (replyMsg == '') {
-          replyMsg = '查無此處請輸入完整地名(區)' ;
+          replyMsg = '查無此處請輸入完整地名(區)'  ;
         }
       }
       if (replyMsg == '') {
